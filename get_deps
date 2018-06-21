@@ -12,7 +12,7 @@ set -e
 ###################################
 
 # Version of virtualenv:
-VERSION=13.1.2
+VERSION=16.0.0
 # Virtualenv tgz filename:
 VENV_TGZ=virtualenv-$VERSION.tar.gz
 VENV_DIR=virtualenv-$VERSION
@@ -24,7 +24,13 @@ INITIAL_ENV=temp_env
 PYTHON=$(which python3)
 
 # URL of pypi to get virtualenv package:
-URL_BASE=https://pypi.python.org/packages/source/v/virtualenv
+# The commented URL below is how the package was originally reference.
+# With the move to pythonhosted it seems packages are no longer stored
+# in a directory based on the first letter of the package but now use a
+# hash. This means updating the VERSION above will more than likely require
+# a change to URL_BASE as well.
+#URL_BASE=https://pypi.python.org/packages/source/v/virtualenv
+URL_BASE=https://files.pythonhosted.org/packages/33/bc/fa0b5347139cd9564f0d44ebd2b147ac97c36b2403943dbee8a25fd74012
 
 printf "\nDownloading virtualenv:\n\n"
 
@@ -82,7 +88,7 @@ printf "\nGetting required python packages:\n\n"
 
 
 # Downloads packages
-$INITIAL_ENV/bin/pip install --download dep/packages -r requirements.txt
+$INITIAL_ENV/bin/pip download -d dep/packages -r requirements.txt
 
 # Remove the temporary python environment:
 rm -rf $INITIAL_ENV

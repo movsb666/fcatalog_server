@@ -71,7 +71,7 @@ cd /home/${USER_NAME}
 tar xzf $VENV_TGZ
 
 # Create an initial virtual env at the home of $USER_NAME
-sudo -u ${USER_NAME} $PYTHON $VENV_DIR/virtualenv.py -p $PYTHON $ENV_NAME
+sudo -H -u ${USER_NAME} $PYTHON $VENV_DIR/virtualenv.py -p $PYTHON $ENV_NAME
 
 # Go back to dep/
 cd $BASE_DIR/dep
